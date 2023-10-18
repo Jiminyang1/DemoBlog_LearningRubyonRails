@@ -1,0 +1,19 @@
+<h1><%= @article.title %></h1>
+<p><%= @article.body %></p>
+<!--edit_article_path is a helper method, which returns the path of the article, eg /articles/1/edit.-->
+
+<ul>
+  <li><%= link_to "Back", articles_path %></li>
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li><%= link_to "Destroy", article_path(@article), data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %></li>
+</ul>
+
+<h2>Comments</h2>
+<%= render @article.comments %> <!-- render @article.comments is equivalent to render partial: "comments/comment", collection: @article.comments -->
+
+<h2>Add a Comment</h2>
+<%= render "comments/form" %> 
+<!-- we want to render _form.html.erb in app/views/comments-->

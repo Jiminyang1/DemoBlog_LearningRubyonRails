@@ -1,0 +1,22 @@
+<h1>Articles</h1>
+<p>Our blog has <%= Article.public_count %> articles</p>
+<!-- 
+<% %> 标记用于执行 Ruby 代码，但不会将结果输出到视图(View)中。这种标记通常用于控制流语句，如 if、unless、while、for 等。
+<%= %> 标记用于执行 Ruby 代码，并将结果输出到视图中。这种标记通常用于输出变量、方法调用或表达式的结果。
+-->
+
+<ul>
+    <% @articles.each do |article|%>
+        <% unless article.archived? %>
+            <li>
+            <!-- 下面是使用Rails的link_to方法创建的链接-->
+                <%= link_to article.title, article %>
+            <!-- The link_to helper renders a link with its first argument as the link's text and its second argument as the link's destination -->
+            </li>
+        <% end %>
+    <% end %>
+</ul>
+
+<%= link_to "New Article", new_article_path%>
+
+
